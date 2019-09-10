@@ -24,18 +24,16 @@
 \IEEEauthorblockA{\textit{System and engineering lab} \\
 \textit{University of Amsterdam}\\
 Amsterdam, the Netherlands \\
-kees.dejong@os3.nl, casfahrenfort@live.nl, anas.younis@os3.nl, z.zhao@uva.nl}
+kees.dejong@surfsara.nl, casfahrenfort@live.nl, anas.younis@os3.nl, z.zhao@uva.nl}
 }
 
 \maketitle
 
 \begin{abstract}
-Data infrastructures manage the lifecycle of data assets and allow users to efficiently discover and assess data. To make its assets findable, accessible, interoperable, and reusable (namely FAIR), a data infrastructure needs to provide data assets not only rich meta information for describe its semantics and contextual information, but also globally resolvable identifiers. The \glspl{pid}, like digital object identifier (DOI) are often used by data publishers and infrastructures. The traditional IP network approach and client-server model for data access can potentially cause congestion and delays with many data consumers. In contract, the Information Centric Networking (ICN) such as \gls{ndn} adopts a data centric approach where data objects, once requested, may be stored on intermediate hops in the network. Consecutive requests for that unique digital object are then made available by these intermediate hops (caching). This approach distributes traffic load more efficient and reliable compared to host-to-host connection oriented techniques, and demonstrates attractive opportunities for sharing digital objects across distributed network. However, such approach also face several challenges. It require not only effective translation between the different naming schemas among \gls{pid} and \gls{ndn}, in particular for supporting PID from different publishers or repositories. Moreover, the planning and configuring an ICN environment for distributed infrastructure is lack of automated solution. To bridge the gap, we proposes an ICN planning service with specific consideration of interoperability across \gls{pid} schemas in the Cloud environment.
+Data infrastructures manage the life cycle of data assets and allow users to efficiently discover and assess data. To make its assets \gls{fairness}, a data infrastructure needs to provide data assets not only rich meta information for describe its semantics and contextual information, but also globally resolvable identifiers. The \glspl{pid}, like \gls{doi} are often used by data publishers and infrastructures. The traditional IP network approach and client-server model for data access can potentially cause congestion and delays with many data consumers. In contrast, the \gls{icn} such as \gls{ndn} adopts a data centric approach where data objects, once requested, may be stored on intermediate hops in the network. Consecutive requests for that unique digital object are then made available by these intermediate hops (caching). This approach distributes traffic load more efficient and reliable compared to host-to-host connection oriented techniques, and demonstrates attractive opportunities for sharing digital objects across distributed networks. However, such an approach also faces several challenges. It requires not only an effective translation between the different naming schemas among \gls{pid} and \gls{ndn}, in particular for supporting \gls{pid} from different publishers or repositories. Moreover, the planning and configuration an \gls{icn} environment for distributed infrastructure is lacking an automated solution. To bridge the gap, we propose an \gls{icn} planning service with specific consideration of interoperability across \gls{pid} schemas in the Cloud environment.
 %Data infrastructures manage data across their lifecycle, and provide them  of massive data, and provide them, this data is published by the use of \glspl{pid}. The traditional network approach for data transmissions are done with host-to-host connections (IP), where every data request from the consumer is answered with a data transfer from the source (the producer). This approach can potentially cause congestion and delays with many data consumers. \gls{ndn} is a data centric approach where unique data, once requested, may be stored on intermediate hops in the network. Consecutive requests for that unique digital object are then made available by these intermediate hops (caching). This approach distributes traffic load more efficient and reliable compared to host-to-host connection oriented techniques.
 
 %The \glspl{pid} are used by data providers within these data infrastructures for sharing and identifying digital objects. In order to create \gls{pid} and \gls{ndn} integration, a translation between the different naming schemas is needed. This paper proposes a solution for accessing and sharing digital objects with different \gls{pid} schemas over a networked environment using \gls{doip} and \gls{ndn}. Furthermore, a solution is proposed to plan and deploy an \gls{ndn} with a scalable method for Cloud environments.
-
-
 
 \end{abstract}
 
@@ -44,10 +42,10 @@ Named Data Networking, Persistent Identifier, Digital Object Interface Protocol,
 \end{IEEEkeywords}
 
 \section{Introduction}
-Data infrastructures mange the lifecycle of data assets, and allow users to effective discover and utilize data for their specific purposes.  Typical examples include EuroArgo\footnote{\url{https://www.euro-argo.eu/}} and SeaDataNet\footnote{\url{https://www.seadatanet.org/}} for ocean observation data, \gls{icos} \footnote{\url{https://www.icos-ri.eu/}} and \gls{actris}\footnote{\url{https://www.actris.eu/}} for air monitoring data, and \gls{epos}\footnote{\url{https://www.epos-ip.org/}} for solid earth monitoring. Those data infrastructures (sometimes also called research infrastructures) become important facilitates for enabling data centric research, and can significantly enhance the feasibility for research at the system level, e.g., for studying global climate change and natural disasters. 
+Data infrastructures manage the life cycle of data assets, and allow users to effectively discover and utilize data for their specific purposes. Typical examples include EuroArgo\footnote{\url{https://www.euro-argo.eu/}} and SeaDataNet\footnote{\url{https://www.seadatanet.org/}} for ocean observation data, \gls{icos} \footnote{\url{https://www.icos-ri.eu/}} and \gls{actris}\footnote{\url{https://www.actris.eu/}} for air monitoring data, and \gls{epos}\footnote{\url{https://www.epos-ip.org/}} for solid earth monitoring. Those data infrastructures (sometimes also called research infrastructures) become important facilitates for enabling data centric research, and can significantly enhance the feasibility for research at the system level, e.g., for studying global climate change and natural disasters. 
 
-However, to effectively discover and utilise resources across different infrastructures, users still have to face the challenges of limited \gls{fairness} of digital assets. Many research infrastructures face the common challenge to improve their \gls{fairness}. The EU recent funded project ENVRI-FAIR \footnote{www.envri-fair.eu} is such an effort for improving the \gls{fairness} for more than 10 environmental research infrastructures. In this context, the globally resolvable identifier (also called (\gls{pid})) of digital objects and their rich contextual metadata are often highlighted as important aspects, as recommended in the 11 principle of \gls{fairness}\footnote{ https://www.force11.org/}.
-Moreover, the classical client-server or P2P solutions are lack of support for distributing digital objects from heterogeneous repositories, in particular for handling continuously growing data quantity, sources and involved users. Protocols like the \gls{doip} have also been recommended by the community of \gls{rda} to handle the sharing of digital objects. However, it is still challenging to share data with \glspl{pid} among the different infrastructures.
+However, to effectively discover and utilize resources across different infrastructures, users still have to face the challenges of limited \gls{fairness} of digital assets. It becomes a common problem for many research infrastructures to improve their \gls{fairness}; several projects have been funded for this purpose. The EU recently funded project ENVRI-FAIR\footnote{www.envri-fair.eu} is a such effort for improving the \gls{fairness} for more than 10 environmental research infrastructures. In this context, the globally resolvable identifier (also called (\gls{pid})) of digital objects and their rich contextual metadata are often highlighted as important aspects, as recommended in the 11 principle of \gls{fairness}\footnote{ https://www.force11.org/}.
+Moreover, the classical client-server or P2P solutions are lacking support for distributing digital objects from heterogeneous repositories, in particular for handling continuously growing data quantity, sources and involved users. Protocols like the \gls{doip} have also been recommended by the community of \gls{rda} to handle the sharing of digital objects. However, it is still challenging to share data with \glspl{pid} among the different infrastructures.
 %However, to effectively discover and utilise resources across different infrastructures, users still have to face the challenges of limited \gls{fairness} of digital assets. Many research infrastructures face the common challenge to improve their \gls{fairness}. The EU recent funded project ENVRI-FAIR \footnote{www.envri-fair.eu} is such an effort for improving the \gls{fairness} for more than 10 environmental research infrastructures. In this context, the globally resolvable identifier (also called (\gls{pid})) of digital objects and their rich contextual metadata are often highlighted as important aspects, as recommended in the 11 principle of \gls{fairness} \cite{}. Some research infrastructures have already adopted \gls{doi} or other types of \gls{pid} solutions for publishing their digital objects, e.g., in \gls{icos}.
 
 %In many scientific domains, massive data collected from observations, simulations and system logs, become important assets for enabling further data centric sciences e.g., modelling complex environment problem requires a long history of observation data \cite{}. After careful curation, data become an important asset in data infrastructures. Typical examples include ocean observation data in EuroArgo\footnote{\url{https://www.euro-argo.eu/}} and SeaDataNet\footnote{\url{https://www.seadatanet.org/}}, air monitoring data in the \gls{icos} research infrastructure\footnote{\url{https://www.icos-ri.eu/}} and \gls{actris}\footnote{\url{https://www.actris.eu/}}, and solid earth monitoring in \gls{epos}\footnote{\url{https://www.epos-ip.org/}}. Those continuously growing data from different research infrastructures provide valuable input from different domains, and can significantly enhance the feasibility for doing research at the system level, e.g., for studying climate change and natural disasters. However, users still have to face several challenges to effectively discover and utilise those assets.
@@ -56,9 +54,9 @@ Moreover, the classical client-server or P2P solutions are lack of support for d
 
 %Moreover, the classical client-server or P2P solutions for sharing and distributing digital objects has to face the challenges of heterogeneous repositories cross infrastructures, diverse granularity of digital objects, and continuously growing scale of the data quantity, sources and involved users. The \gls{eosc} is moving towards the direction of providing an open ecosystems for different parties to effectively share their services and data, and to utilise them in the life cycle of their research activities. Protocols like the \gls{doip} have also been recommended by the community of \gls{rda} to handle the sharing of digital objects. However, it is still challenging to share data with heterogeneous sizes and \glspl{pid} among the different infrastructure.
 
-On the other hand, the networking technologies have made significant progresses during the past years for improving the distribution efficiency, e.g., \gls{icn} \cite{zhang2014named}, for application aware adaptability, e.g., \gls{sdn} \cite{kreutz2014software}, and for effectively resource management and sharing over common network infrastructures, e.g., \gls{nfv} \cite{han2015network}. Those advanced technologies still lack seamless support for being embedded in the data management life cycle, e.g., for discovering and sharing digital objects with \glspl{pid}. In the earlier papers \cite{koulouzis2018information}, Koulouzis et al. discussed the feasibility to use \gls{icn} solution like \gls{ndn} to distribute the digital object with \glspl{pid}; however, the work only focuses on the \glspl{pid} form a single publisher. Cloud caching \cite{} and data lake \cite{} are other types of solution focus on smart caching of the digital object across distributed infrastructures, but did not have an explicit model of the data contents global resolvable identifiers.
+On the other hand, the networking technologies have made significant progress during the past years for improving the distribution efficiency, e.g., \gls{icn} \cite{zhang2014named}, for application aware adaptability, e.g., \gls{sdn} \cite{kreutz2014software}, and for effectively resource management and sharing over common network infrastructures, e.g., \gls{nfv} \cite{han2015network}. Those advanced technologies still lack seamless support for being embedded in the data management life cycle, e.g., for discovering and sharing digital objects with \glspl{pid}. In the earlier papers \cite{koulouzis2018information}, Koulouzis et al. discussed the feasibility to use \gls{icn} solutions like \gls{ndn} to distribute the digital objects with \glspl{pid}; however, the work only focuses on the \glspl{pid} form a single publisher. Cloud caching \cite{} and data lake \cite{} are other types of solutions which focus on smart caching of the digital objects across distributed infrastructures, but did not have an explicit model of the data contents global resolvable identifiers.
 
-In this paper, we extend our earlier work of \gls{naas4pid} \cite{koulouzis2018information}, and specifically look at three aspects in applying \gls{ndn} in data infrastructures: 1) how to seamless publish version controlled digital objects with \gls{pid}, 2) how to plan a customized virtual \gls{ndn} environment for user community of a different infrastructures, and 3) how to distribute digital objects from distributed data sources with heterogeneous \gls{pid} publishers. We will use a case study from the SeaDataNet and structure the paper in five parts. First we will briefly introduce the pilot use case, and review the state of the art and related work. And then we will present the proposed solution and demonstrate its usage via the use case.
+In this paper, we extend our earlier work of \gls{naas4pid} \cite{koulouzis2018information}, and specifically look at three aspects in applying \gls{ndn} in data infrastructures: 1) how to seamless publish version controlled digital objects with \gls{pid}, 2) how to plan and deploy a customized virtual \gls{ndn} environment for user communities on different infrastructures, and 3) how to distribute digital objects from distributed data sources with heterogeneous \gls{pid} publishers. We will use a case study from the SeaDataNet and structure the paper in five parts. First we will briefly introduce the pilot use case, and review the state of the art and related work. And then we will present the proposed solution and demonstrate its usage via the use case.
 
 
 
@@ -80,7 +78,7 @@ A data infrastructure often aggregates a number of data sources, and provide the
 To deliver high quality services to the user community, an infrastructure like the SeaDataNet often has to face several challenges:
 \begin{enumerate}
     \item Fault tolerance challenges. The SeaDataNet originally only gathers metadata from remote repositories, and the user has to access the individual remote repository to obtain data. Such client-server style not only creates high load for the repository but also network traffic congestion.
-    \item Performance challenges. A Cloud cache solution has been proposed in SeaDataNet to duplicate each remote repository a copy in Cloud, In this way, the clients can direct retrieve the copy of data assets from the Cloud server. However, such solution also needs careful customization for load-balancing and service placement to keep the performance high.
+    \item Performance challenges. A Cloud cache solution has been proposed in SeaDataNet to duplicate each remote repository as a copy in the Cloud. In this way, the clients can directly retrieve the copy of data assets from the Cloud server. However, such solution also needs careful customization for load-balancing and service placement to keep the performance high.
     \item Scalability challenges. The SeaDataCloud has to face the continuous growth of both data providers and the user community. In many cases, geo special data retrieval needs calculation of the region, layers and the time duration. The system has to face scalability challenges of both network and the server capacity. 
 \end{enumerate}
 In the rest of the section, we will review the related work of these topics and discuss the key contributions of our work. 
@@ -88,10 +86,9 @@ In the rest of the section, we will review the related work of these topics and 
 \subsection{Persistent Identifiers (PIDs)}
 \label{sec:pids}
 
-Persistent Identifiers are in essence a permanent reference to a document, file, web page or data object. Generally, a persistent identifier is assigned to a data object on request of the client, after which the service guarantees that whenever this identifier is resolved, it will provide necessary meta information about the object. PID does not guarantee that the object will be available forever; an PID should still be resolvable (to the metadata") even the object has been deleted. 
-PIDs often have different "namespaces" which can be used to point to different sub-resolvers, much like how URLs can have different sub-domains. These namespaces can be used to allow a single resolver to resolve multiple top-level PIDs to a number of distinct resolvers which have their own PID resolution system and separate repositories for storing data. This structure allows multiple different organizations to resolve data using a single PID scheme, as long as they agree to uphold the persistence policies set by the top-level resolver. Typical schemas of PID include Digital Object Identifier (DOI), Uniform Resource Name (URN) and Persistent URL (PURL).
+\glspl{pid} are in essence a permanent reference to a document, file, web page or data object. Generally, a persistent identifier is assigned to a data object on request of the client, after which the service guarantees that whenever this identifier is resolved, it will provide necessary meta information about the object. \glspl{pid} do not guarantee that the object will be available forever; a \gls{pid} should still be resolvable (to the metadata) even if the object has been deleted. 
 
-PIDs are often provided by the third party registers, like The European Persistent Identifier Consortium (ePIC), DataCite, ORCID, ISNI. 
+PIDs often have different `namespaces' which can be used to point to different sub-resolvers, much like how URLs can have different sub-domains. These namespaces can be used to allow a single resolver to resolve multiple top-level PIDs to a number of distinct resolvers which have their own PID resolution system and separate repositories for storing data. This structure allows multiple different organizations to resolve data using a single PID scheme, as long as they agree to uphold the persistence policies set by the top-level resolver. Typical schemas of PID include Digital Object Identifier (DOI), Uniform Resource Name (URN) and Persistent URL (PURL). PIDs are often provided by the third party registers, like The European Persistent Identifier Consortium (ePIC), DataCite, ORCID, ISNI. 
 
 
 Cordra \cite{cordra} is an open-source Digital Object Management application, a core part of the Digital Object Architecture (DOA) \cite{sharp2016overview}. It offers functionality for creating, editing and accessing digital objects as discrete data structures with unique, resolvable identifiers. Metadata is automatically extracted from any digital information (documents, images, spreadsheet data etc.) included in the objects and users may generate additional metadata themselves.
@@ -101,7 +98,7 @@ In 2014, Karakannas researched the efficiency of \gls{icn} for delivering big da
 
 Mousa researched the fetching and sharing of \gls{doi} objects with \gls{icn} such as \gls{ndn}. The researcher's approach focused only on \gls{doi} digital objects within \glspl{ndn}. The researcher explained that the difference in \gls{ndn} naming of different \gls{pid} providers must be taken into account, such that the correct prefix is used within \gls{ndn} to identify specific \gls{pid} types. In the researcher's design, the translation happens in the consumers browsers. The consumer has the choice to either request the digital object by its \gls{ndn} name or \gls{pid} \cite{ndn-app-aware}.
 
-Kolouzis et al. continued the research done by Karakannas \cite{icn-bd} and Mousa \cite{ndn-app-aware} and proposed an architecture to map \glspl{pid} into the naming schema of \gls{ndn}. Their proposed solution is named \gls{naas4pid}.
+Kolouzis et al. continued the research done by Karakannas \cite{icn-bd} and Mousa \cite{ndn-app-aware} and proposed an architecture to map \glspl{pid} into the naming schema of \gls{ndn}. A \gls{pid}2\gls{ndn} gateway is proposed for resolving \glspl{pid} to \gls{ndn} names, an \gls{ndn} node that implements a virtualized \gls{ndn} router, and  \gls{ndn}4\gls{pid} manager for automating the management of the \gls{ndn} overlay in Cloud or e-infrastructure.
 
 \subsection{Named Data Networking}
 \gls{ndn} is not yet implemented on a large scale. There have been several large testbeds established during the past years for scientific research in delivering climate data \cite{lim2018ndn}, and hadron collider network \cite{shannigrahi2015named}. From those practices, \gls{ndn} provided performance improvements compared to classical climate data delivery techniques based on TCP/IP. Similar achievement has also been reported by Shannigrahi et al. at the USA-based large hadron collider network \cite{shannigrahi2015named} when using \gls{ndn} for caching simulations. In those work, cache size plays an important role in optimising performance, and a 1GB \gls{ndn} cache at the edge of the \gls{ndn} can already significantly improve data distribution and reduce the network load. However, native \gls{ndn} congestion control is still an open research area \cite{ren2016congestion}.
@@ -125,83 +122,8 @@ Koulouzis et al. investigated different strategies for caching, replacement and 
 
 Those practices and performance charactertics provide valuable information for designing and customising a \gls{ndn} environment.  
 
-\subsection{Network planning}
-
-\subsection{Key contributions}
- This solution is composed out of three key components \cite{koulouzis2018information}:
-\begin{itemize}
-  \item \gls{pid}2\gls{ndn} gateway.
-  \begin{itemize}
-        \item Primarily responsible for resolving \glspl{pid} to \gls{ndn} names.
-  \end{itemize}
-  \item \gls{ndn}4\gls{pid} router image.
-    \begin{itemize}
-        \item An \gls{ndn} node that implements a virtualized \gls{ndn} router.
-    \end{itemize}
-  \item \gls{ndn}4\gls{pid} manager.
-    \begin{itemize}
-        \item Automates the management of the \gls{ndn} overlay in\newline Cloud or e-infrastructure.
-    \end{itemize}
-\end{itemize}
-In this paper, we will bring the follow three contributions:
-\begin{enumerate}
-    \item Propose a PID object publishing plugin for the data management lifecycle; 
-    \item Propose a NDN planner for setting virtual NDN envioronment.
-    \item Develop a PID interoperability service for handling different PID schemas. 
-\end{enumerate}
-
-
-\section{Proposed solution}
-
-\section{PID and NDN interoperability with version control}
-\label{pid-interoperability}
-
-\gls{fairness} is crucial for enabling open science and innovation based on digital objects (\glspl{pid}) from large communities of providers and users. However, the gaps among version control, identification and distributed access systems often make the scalability of data centric applications difficult across large user communities and highly distributed infrastructures. This section proposes a solution for accessing and sharing digital objects over a networked environment using \gls{doip} and \gls{ndn} by the use of \gls{naas4pid}. Furthermore, a \gls{pid} to \gls{ndn} translation prototype will be discussed with extensible support for \gls{pid} types in mind.
-
-\subsubsection{A DOIP centered versioning, publishing and distributing data management solution}
-To seamlessly integrate the management services for versioning control, publishing, discovery and distribution of digital objects, globally resolvable and persistent identifiers of the digital objects are crucial. Moreover, the data infrastructure must 1) facilitate data discovery and identification, 2) guarantee available metadata for all digital objects and 3) support resolution of persistently identified data. Furthermore, the distribution system should 1) have reasonable performance, 2) be scalable with the amount of traffic occurring on the network and 3) be easily integratable for both organizations and consumers with legacy systems. Lots of existing data management systems have originated from early legacy systems, e.g., environmental observation stations, and lack a global data identifier centered design for data services.
-
-\gls{naas4pid} is an extension of \gls{ndn} which allows it to interoperate with \glspl{pid}. \gls{naas4pid} adds an additional system layer which translates \glspl{pid} to \gls{ndn} names and optimizes and manages the virtual \gls{ndn} overlay in Cloud or other e-infrastructures. In the architecture as shown in figure \ref{fig:sdc_cur}, only a single data provider is present on the network, since \gls{naas4pid} can currently only support one provider. Additional content providers could offer large community benefits, such as third parties independently creating education material.
-
-\begin{figure}[ht]
-\centering
-\caption{A DOIP centered architecture for digital object version control, publishing and distribution}
-\label{fig:architecture}
-\includegraphics[width=0.4\textwidth]{images/architecture.png}
-\end{figure}
-\subsection{Technical considerations}
-
-\ref{fig:architecture} shows a preliminary architecture for persistently publishing digital objects from an organization’s legacy system. Following from the workflow in figure \ref{fig:sequence}, it is divided into three distinct parts: version control system, data publication and data distribution. Content created by community content providers is processed and stored (in its internal repository) by the version control system in any form that is required by its specific use case. Once submitted content has been approved, it is published to persistent data and metadata repositories by any \gls{pid} system. From there, the data can be discovered and accessed by content consumers through the \gls{ndn} by the use of the \gls{naas4pid} service.
-
-\begin{figure}[h]
-\centering
-\caption{Data processing in an open education platform}
-\label{fig:sequence}
-\includegraphics[width=0.4\textwidth]{images/sequence.png}
-\end{figure}
-
-This architecture is generic in the sense that any existing legacy system can adopt it. The system only needs to be expanded with functionality to publish the data to the PID system, including a mapping between existing data structure and a (meta)data structure fitting to the PID system.
-
-\subsubsection{Extensible PID and NDN interoperability}
-\label{interoperablity}
-In this section, we will discuss an \gls{ndn} to \gls{pid} interoperability prototype with \gls{pid} extensibility in mind. Our design is based on related work done by Karakannas \cite{icn-bd}, by avoiding the \gls{pid} to \gls{ndn} translation on client side \cite{icn-bd}. The pattern matching method was based on related work by Mousa for identifying different \gls{pid} types \cite{ndn-app-aware}. The research done by Olschanowsky et al. was used for deriving \gls{ndn} names from metadata \cite{ndn-man}.
-
-Our prototype design consists of the following components, each with their own functionality; the \gls{pid} server, the \gls{pid} to \gls{ndn} gateway and the client. The general idea is that a user enters a \gls{pid} of the digital object that the user wants to retrieve at the client and gets back the requested digital object. The retrieval of a digital object depends if is already published in the \gls{ndn} or not. The \gls{pid} to \gls{ndn} gateway implements the translation of different \gls{pid} types and sends the translated name back to the client. Furthermore, we identify \gls{pid} types based on pattern matching as described by Mousa \cite{ndn-app-aware}.
-
-The gateway is responsible for translating a \gls{pid} to \gls{ndn} name and checks if the requested digital object is already published in \gls{ndn}. The first responsibility is translating the \gls{pid} it receives from the client to an \gls{ndn} compatible name. In our prototype we implemented the Handle \gls{pid} type within our \gls{pid} server. Furthermore, we also implemented the URN \gls{pid} type of the national library of the Netherlands, as well as the \gls{doi} type of PANGAEA. Based on pattern matching of the \gls{pid} type\footnote{\url{https://github.com/AquaL1te/rp2/blob/master/Scripts/pid_server.py#L58-L62}}, the gateway detects what kind of \gls{pid} type it has to process. Then, the associated function in the code is called to translate the \gls{pid} to \gls{ndn} name and appends the corresponding link of the web resolver of the \gls{pid} type it receives\footnote{\url{https://github.com/AquaL1te/rp2/blob/master/Scripts/pid_server.py#L17-L37}}. The patterns of most standardized \gls{pid} types are documented in the ePIC \gls{dtr}\footnote{\url{http://dtr-test.pidconsortium.eu}}.
-
-Furthermore, the second responsibility of the gateway is to check if the digital object is already published in \gls{ndn}. If the digital object is available in \gls{ndn}, the gateway sends the translated \gls{ndn} name back to the client. The client then retrieves the digital object from \gls{ndn}. If the digital object is not available in \gls{ndn}, then the gateway sends back the \gls{pid} link to the client and caches the digital object in \gls{ndn} for future requests.
-
-\gls{pid} metadata can be used to substitute missing fields in the \gls{pid} URN in order to create an \gls{ndn} compatible hierarchical name. Therefore, if metadata is used, a parser has to be implemented in the gateway. The \gls{ndn} namespace is unbounded. However, using long \gls{ndn} names could degrade performance with many data consumers, as described by Yuan et al. \cite{yuan2012scalable}.
-
-\section{Planning and deploying an NDN}
-\label{ndn-planning-deployment}
-An \gls{ndn} is typically distributed geographically. Therefore, deploying \gls{ndn} on Cloud providers helps distribution. However, Cloud providers lack standardization and offer different interfaces to orchestrate resources and maintain the life cycle of services. This section explores the methods involved to plan and deploy \gls{ndn}.
-
-\subsection{Planning}
-
-\subsubsection{McCabe}
-Scalability is defined as capacity to be changed in size or scale. In order to plan an \gls{ndn} with this goal in mind we used McCabe's method. McCabe's book `Network Analysis, Architecture, and Design' is about applying a systems methodology approach towards network design \cite{mccabe2010network}. McCabe's approach consists out of three core phases (figure \ref{fig:mccabe-process}); analysis, architecture and design. These simple, yet important planning phases in McCabe describe how to make technology and topology decisions in a network, especially for large deployments. These decisions are guided based on inputs for these three core phases, the initial input may be from users and/or from network metrics. Consecutive processes use the output of previous processes as input, thus these processes are interconnected.
+\subsection{Network planning and customization}
+Planning and customizing the topology and capacity of a network is crucial to meet the requirement of applications. McCabe applies a systems methodology approach towards network design \cite{mccabe2010network}. The approach consists of three core phases (figure \ref{fig:mccabe-process}); analysis, architecture and design. These simple, yet important planning phases describe how to make technology and topology decisions in a network, especially for large deployments. These decisions are guided based on inputs for these three core phases, the initial input may be from users and/or from network metrics. Consecutive processes use the output of previous processes as input, thus these processes are interconnected.
 
 \begin{figure}[H]
 \centering
@@ -209,6 +131,123 @@ Scalability is defined as capacity to be changed in size or scale. In order to p
 \caption{Cyclic and iterative nature of McCabe's processes and phases.}
 \label{fig:mccabe-process}
 \end{figure}
+
+Using the Software Defined Networking (SDN) and other programmable network technologies, developers can control the flows via the service interface provided by the network control plane. Using the cloud environment, the virtual networks can be fully customized and manipulated based on the application constraints. In \cite{}, Wang et al., proposed a critical path based approach to plan a virtual infrastructure, including virtual machines, their topology, and the placement of SDN controllers. Most of these work so far mainly for the normal IP based network. The planning solution for the ICN network is still quite limited. 
+
+
+
+\subsection{Summary}
+From the discussion, we can clearly see the advantages of using ICN technologies in distributing digital objects; however, the ICN has not yet been widely deployed as physical infrastructure, except experimental test beds. The persistent identifiers of digital objects are crucial to make digital assets FAIR. However, not all data infrastructures are ready to provide their digital assets with PIDs. The PID provides a natural mapping with the ICN solutions like Named Data Networking; however, the seamless integration between NDN and the heterogeneous PID repositories still a challenge. 
+In this context, we specifically highlighted three challenges: i) complexity of the data publishing and PID assignment, ii) automation of virtual NDN environment planning and provisioning and iii) interoperability among different PID schema. 
+To tack those challenges, we will bring the follow three contributions:
+\begin{enumerate}
+    \item Provide services to enable data manager to seamless publish data objects and obtain PIDs during the data management life cycle;
+    \item Provide a network planner to plan virtual NDN environments based on the characteristics of the data sources and user access patterns.
+    \item Develop a PID interoperability service in the NDN for handling different PID schema. 
+\end{enumerate}
+
+% From the discussion, we can clearly see the advantages of using ICN technologies in distributing digital objects; however, the ICN has not yet been widely deployed as physical infrastructure, except experiemntal test beds. The persistent identifiers of digital objects are crucial to make digital assets FAIR. However, not all data infrastructures are ready to provide their digital assets with PIDs. It is not only and provide a natural mapping with the ICN solutions like Named Data Networking; however, the seamless integration between NDN and the heterogeneous PID repositories still a challenge. 
+ 
+
+\section{Proposed solution}
+An on demand \gls{ndn} environment manager for data infrastructures (NDN4DI) is proposed to facilitate the application of NDN in the context of Data infrastructure. Fig. \ref{fig:architecture-new} shows the basic idea. The system extends the earlier \gls{naas4pid} solution presented in \cite{koulouzis2018information}, and provide support for 1) data manager to publish data objects and obtain the PID for them, and 2) plan a customized NDN environment in clouds, and 3) automate the provision and deployment of the planned environment. After the NDN environment is in operation, the NDN4DI also provides functions for handling PID repositories from different publishers.  
+
+\begin{figure}[ht]
+\centering
+\label{fig:architecture-new}
+\includegraphics[width=0.5\textwidth]{images/NDN-pub-planner.png}
+\caption{Basic idea of the proposed on demand NDN planner solution for data infrastructures}
+\end{figure}
+
+%\gls{fairness} is crucial for enabling open science and innovation based on digital objects (\glspl{pid}) from large communities of providers and users. However, the gaps among version control, identification and distributed access systems often make the scalability of data centric applications difficult across large user communities and highly distributed infrastructures. This section proposes a solution for accessing and sharing digital objects over a networked environment using \gls{doip} and \gls{ndn} by the use of \gls{naas4pid}. Furthermore, a \gls{pid} to \gls{ndn} translation prototype will be discussed with extensible support for \gls{pid} types in mind.
+
+
+%\subsection{Technical considerations}
+%\section{PID and NDN interoperability with version control}
+%\label{pid-interoperability}
+
+\subsection{PID assignment during data management}
+Lots of existing data infrastructures are originated from early legacy systems, e.g., environmental observation stations, and lack of a global data identifier centered design for data services. The basic scenario is shown in the Fig. \ref{ndn-planning-deployment}. 
+
+Following from the workflow in figure \ref{fig:sequence}, it is divided into three distinct parts: version control system, data publication and data distribution. Content created by community content providers is processed and stored (in its internal repository) by the version control system in any form that is required by its specific use case. Once submitted content has been approved, it is published to persistent data and metadata repositories by any \gls{pid} system. From there, the data can be discovered and accessed by content consumers through the \gls{ndn} by the use of the \gls{naas4pid} service.
+
+\begin{figure}[h]
+\centering
+\label{fig:sequence}
+\includegraphics[width=0.4\textwidth]{images/sequence.png}
+\caption{Data processing in an open education platform}
+\end{figure}
+
+
+\subsection{Support Multiple PID repositories}
+%%%%% Chapter 4, here. 
+To distributed data objects with PID over NDN, we have to handle the interface between NDN nodes and the repositories of PID data objects. The \gls{pid} to \gls{ndn} gateway is the key component, as shown in Fig \ref{fig:sdc_model}. The general idea is that a user enters a \gls{pid} of the digital object that the user wants to retrieve at the client and gets back the requested digital object. The retrieval of a digital object depends if is already published in the \gls{ndn} or not. The \gls{pid} to \gls{ndn} gateway implements the translation of different \gls{pid} types and sends the translated name back to the client. Furthermore, we identify \gls{pid} types based on pattern matching as described by Mousa \cite{ndn-app-aware}.
+
+
+%Our design is based on related work done by Karakannas \cite{icn-bd}, by avoiding the \gls{pid} to \gls{ndn} translation on client side \cite{icn-bd}. The pattern matching method was based on related work by Mousa for identifying different \gls{pid} types \cite{ndn-app-aware}. The research done by Olschanowsky et al. was used for deriving \gls{ndn} names from metadata \cite{ndn-man}.
+
+% \begin{figure*}[ht]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{images/PIDtoNDN.png}
+\caption{NDN virtual function based planning for achieving \gls{pid} interoperability}
+\label{fig:sdc_model}
+\end{figure}
+% \end{figure*}
+
+
+The gateway is responsible for translating a \gls{pid} to \gls{ndn} name and checks if the requested digital object is already published in \gls{ndn}. The first responsibility is translating the \gls{pid} it receives from the client to an \gls{ndn} compatible name. 
+
+Furthermore, the second responsibility of the gateway is to check if the digital object is already published in \gls{ndn}. If the digital object is available in \gls{ndn}, the gateway sends the translated \gls{ndn} name back to the client. The client then retrieves the digital object from \gls{ndn}. If the digital object is not available in \gls{ndn}, then the gateway sends back the \gls{pid} link to the client and caches the digital object in \gls{ndn} for future requests.
+
+
+
+\subsection{NDN planning}
+The \gls{ndn} planning component models the \gls{ndn} function as containers, and plan a \gls{ndn} environment based on the VM based virtual infrastructure. Fig. \ref{fig:high-level-network-design} shows the basic idea. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{images/high-level-network-design.png}
+\caption{High-level network design.}
+\label{fig:high-level-network-design}
+\end{figure}
+
+The planning approach follows the basic idea in the 
+%%% some design text here
+
+\subsection{NDN automation}
+The output of the design is a description of the virtual machine based network, with the deployment details of the NDN functions. 
+An \gls{ndn} is typically distributed geographically. Therefore, deploying \gls{ndn} on Cloud providers helps distribution. The heterogeneous nature in Cloud environments can make deployment automation and management complicated. \gls{tosca} is a method to describe the deployment and management of a Cloud infrastructure based on reusable templates \cite{tosca-standard}. These descriptions are then used by orchestrators to facilitate the deployment. The NDN4DI models the virtual infrastructure planned for NDN using TOSCA, and automate the provisoning using \gls{drip}, a TOSCA-compatible prototype which uses the open Cloud computing interface and currently supports EC2, \gls{egi} FedCloud and \gls{exogeni} Clouds. The Ansible playbooks for configuration management and contains a deployment agent for e.g. Kubernetes. 
+
+
+
+A requirement is flexible scalability, this will be addressed by deploying and managing \gls{ndn} in an \gls{nfv}-style. Therefore, \gls{ndn} will be deployed as virtual functions and managed centrally via Kubernetes. \gls{nfv} is a network architecture concept which uses virtualization to create and manage higher level network functions, as software, on commodity hardware. These functions may be interconnected to create a network service such as load-balancers, firewalls or intrusion detection. This architecture differs from traditional network architectures, where network functions are provided by hardware devices. \gls{nfv} provides the ability to easily duplicate network functionality and expand the network locally or into other data centers. \gls{nfv} is usually managed by an orchestrator to automate deployment, thus providing less overhead than traditional network management with hardware devices.
+
+\section{System prototype}
+\label{ndn-planning-deployment}
+
+In our prototype we implemented the Handle \gls{pid} type within our \gls{pid} server. Furthermore, we also implemented the URN \gls{pid} type of the national library of the Netherlands, as well as the \gls{doi} type of PANGAEA. Based on pattern matching of the \gls{pid} type\footnote{\url{https://github.com/AquaL1te/rp2/blob/master/Scripts/pid_server.py#L58-L62}}, the gateway detects what kind of \gls{pid} type it has to process. Then, the associated function in the code is called to translate the \gls{pid} to \gls{ndn} name and appends the corresponding link of the web resolver of the \gls{pid} type it receives\footnote{\url{https://github.com/AquaL1te/rp2/blob/master/Scripts/pid_server.py#L17-L37}}. The patterns of most standardized \gls{pid} types are documented in the ePIC \gls{dtr}\footnote{\url{http://dtr-test.pidconsortium.eu}}.
+
+
+
+
+TOSCA template descriptions consist out of the following core components; nodes, relationships and interfaces. Nodes can be a host, container or VM and are connected to each other through relationships such as `dependsOn', `hostedOn' and `connectsTo'. These relationships can be used to describe that a VM is `hosted on' a host (e.g. a bare metal machine). Or that a set of containers 'depend on' each other for functionality and 'connect to' e.g. a database. Such as a containerized web application that requires a database, facilitated by another container. Interfaces are used to control the life cycle of a component and consist as a set of hooks to trigger actions, these actions are create, configure, start, stop or delete. These hooks can be triggered to e.g. configure and create containers, stop or start a service or do system maintenance such as delete artifacts after a service is stopped. Furthermore, constraints can be set for the input values in these template descriptions. These can be e.g. that the amount of CPU's should be defined with integers and should contain a value more than one. However, the orchestrator is responsible for verifying these constraints, \gls{tosca} is merely a means to describe components in an infrastructure.
+
+In figure \ref{fig:tosca-diagram}, a \gls{tosca} diagram is illustrated. This diagram represents an abstract template description of the \gls{tosca} relationships, in which the grey rectangular boxes are the core scalability factors. \gls{tosca} consists out of several types; nodes, relationships and interfaces. The scaling properties are highlighted in the rectangular areas. The left area, highlighted as `scaling in/out resources' contains a dependency chain of several virtual \gls{ndn} functions. This dependency chain is also depicted numerically.
+
+Before a pod can be deployed on Kubernetes (step 2 to 5), a VM needs to exist (step 1). This is described by the `dependsOn' relationship. Furthermore, with the requirements defined, input constraints are described. These constraints are used by the orchestrator to make sure that the \gls{ndn} infrastructure has sufficient resources available to operate. Once a VM is deployed, the dependency for Kubernetes is satisfied, thus Kubernetes can then be setup (step 2). Kubernetes can then deploy pods by the use of interfaces (step 3). These interfaces feed the containers with environment variables such as the gateway, a list of routes, the transport protocol for \gls{ndn}, the \gls{ndn} strategies and on which Kubernetes node this pod should run. The environment variables are given to the interface via the \gls{tosca} inputs. These environment variables are then used by scripts that run inside the pods to setup \gls{ndn}. Several constraints are set for these environment variables such as which valid transport protocols can be used for \gls{ndn}, which \gls{ndn} strategies are valid and which nodes are available. These constraints are defined with e.g. `valid\_values' or `greater\_than' definitions. These constraints help to guide the orchestrator to verify the inputs that are given for the template description. As illustrated in the second gray area `scaling in/out the application', several pods can be instantiated (step 5a, 5b and 5c) from the image (step 4). These pods enable the virtual \gls{ndn} functions. These pods establish the \gls{ndn} and therefore are connected via the `connectsTo' relationship. This network expands over to other Kubernetes nodes in the cluster by the use of the Kubernetes built-in overlay network.
+
+\subsection{NDN deployment as NFV}
+% add sed command to substitute config lines in nfd.conf
+The orchestrators mentioned when combined with a \gls{tosca} parser are still in a prototype phase. Therefore, in our prototype we deployed the VMs and Kubernetes nodes manually. In practice the life cycle of also the Kubernetes pods are managed by a \gls{tosca} orchestrator. Without having a \gls{tosca}-ready orchestrator available, steps 2 through 5 in figure \ref{fig:tosca-diagram} were be carried out by Kubernetes exclusively. This was done by defining the configuration properties of the pods manually\footnote{\url{https://github.com/AquaL1te/rp2/blob/master/Kubernetes/expanded-cluster.yml}}. These properties include the \gls{ndn} function name, e.g. router, producer or consumer. And also includes the routes (\gls{ndn} prefixes) and the associated \gls{ndn} face with the transport protocol to use (TCP or UDP). These parameters were then inserted into the \gls{ndn} \gls{fib} by the scripts that were executed inside the pod\footnote{\url{https://github.com/AquaL1te/rp2/blob/master/Docker/producer/docker-entrypoint.sh}}. The \gls{ndn} strategies were also configured by these scripts.
+
+Furthermore, if it is not defined where a pod should be running, Kubernetes will make this decision itself, based on the known resources in the Kubernetes cluster. If for example a Kubernetes node has more memory to spare than other nodes, then Kubernetes will likely decide to spawn the pod there. This Kubernetes node could potentially run in a Cloud provider located in another geographical area. Since the purpose is to provide data distribution through the use of \gls{ndn}, locality becomes a key factor. Therefore, a pod is specifically assigned to a Kubernetes node in order to provide in-network caching in a specific geographical area.
+
+The methods discussed offer a combined way to plan and deploy a data distribution network. McCabe can be used to methodologically establish the performance requirements. \gls{tosca} can be used to apply these performance requirements to the virtualized environment from a central deployment and management description. For the size of this prototype the McCabe method is extra overhead. However, the prototype is only used to demonstrate the train of thought. The methods discussed can be applied to larger deployments where the McCabe method will be more valuable.
+
+In conclusion, the \gls{pid} to \gls{ndn} name translation prototype (section \ref{interoperablity}) is integrated as \gls{nfv} pods in our deployment prototype. This enables flexible scaling by the use of Cloud providers.
+
+\section{use case}
 
 % We need more space, this part can be left out without affecting the context
 % In figure \ref{fig:mccabe-process} the three core phases are illustrated in \textit{italic} while the processes are in normal text. In order to highlight the core phases by name they are \underline{underlined} in the figure. The first phase (analysis) has as goal to understand the network and potential problems in terms of performance and efficiency in order to determine network requirements. This is done by developing sets of problem statements and objectives that describe what the target network should address. Therefore, historical data from network management (monitoring), requirements gathered from the network users, staff and management are included in the analysis phase. Furthermore, these metrics are then compared to the relationships between users, applications, devices and other networks in order to determine if requirements match with the user and network expectations. The second and third phase (architecture and design) uses the output of the first phase to establish a high-level design of the network. This network design determines which technology and topology choices are justified to improve the network requirements established in the first phase. The fourth process is implementing the design, test if requirements are met and finally accept the implementation. These phases are intended to be iterative and by no means define a final architecture design. This is due to the fact that requirements, technology and user behavior can change and with that the network design.
@@ -272,7 +311,7 @@ Furthermore, in research Clouds identification services are used and utilize dif
 Research Clouds are in general a federated Cloud, where each federation is responsible for its own budget and infrastructure. However, our prototype assumes central control over the \gls{ndn}. Our prototype could be approached in several ways. The discussed solutions could be deployed as an internal data-sharing platform per infrastructure and interconnect those \gls{ndn}'s, thus maintaining the federated model. Or, it could be deployed as a third party data-sharing platform, where one can deploy and operate the \gls{ndn} for multiple infrastructures. Our research did not explore these subjects. However, it provides the flexibility to deploy these solutions in such a manner.
 
 \section*{Acknowledgment}
-We would like to thank Dr. Zhiming Zhao for his supervision and advice during this research. This paper is largely based on the work done by Kees de Jong, MSc and Anas Younis, MSc \cite{de2019planning}.
+We would like to thank Dr. Zhiming Zhao for his supervision and advice during this research. This paper is largely based on the work done by Kees de Jong, MSc (SURFsara) and Anas Younis, MSc \cite{de2019planning}.
 % how to acknoledge cas? his poster is not published (google scholar)
 
 % \section*{References}
@@ -333,7 +372,7 @@ We would like to thank Dr. Zhiming Zhao for his supervision and advice during th
 \newacronym{envri}{ENVRI-FAIR}{ENVironmental Research Infrastructures building Fair services Accessible for society, Innovation and Research}
 \newacronym{rda}{RDA}{Research Data Alliance}
 \newacronym{sdn}{SDN}{Software Defined Networking}
-
+\newacronym{ndn4di}{NDN4DI}{Named Data Networking for Data Infrastructures}
 
 \bibliographystyle{./bibliography/IEEEtran}
 \bibliography{./bibliography/IEEEabrv,./bibliography/IEEEexample}
