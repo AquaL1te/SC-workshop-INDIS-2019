@@ -75,11 +75,11 @@ A data infrastructure often aggregates several data sources, and provide their m
 \subsection{Background}
 
 
-To deliver high quality services to the user community, an infrastructure like the SeaDataNet often has to face several challenges:
+To deliver high quality services to the user community, an infrastructure like SeaDataNet often has to face several challenges:
 \begin{enumerate}
-    \item Fault tolerance challenges. The SeaDataNet originally only gathers metadata from remote repositories, and the user has to access the individual remote repository to obtain data. Such client-server style not only creates high load for the repository but also network traffic congestion.
+    \item Fault tolerance challenges. SeaDataNet originally only gathers metadata from remote repositories, and the user has to access the individual remote repository to obtain data. Such client-server style not only creates high load for the repository but also network traffic congestion.
     \item Performance challenges. A Cloud replica has been created in SeaDataNet to duplicate each remote repository in the Cloud. In this way, the clients can directly retrieve the copy of data assets from the Cloud server. However, such a solution also needs careful customization for load-balancing and service placement to reach the required quality of service or user experiences.
-    \item Scalability challenges. The SeaDataNet faces the continuous growth of both data providers and the user communities. In many cases, geo special data retrieval needs calculation of the region, layers and the time duration. The system has to face scalability challenges of both network and the server capacity. 
+    \item Scalability challenges. SeaDataNet faces the continuous growth of both data providers and the user communities. In many cases, geo special data retrieval needs calculation of the region, layers and the time duration. The system has to face scalability challenges of both network and the server capacity. 
 \end{enumerate}
 In the rest of the section, we will review the related work of these topics and discuss the key contributions of our work. 
 
